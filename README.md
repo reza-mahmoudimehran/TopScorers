@@ -19,7 +19,7 @@ This app shows a list of the top three scoring football players in different lea
 
 #### Requirements
 
-You should refactor the project properly and fix possible bugs or memory leaks with this requirements:
+You should refactor the project properly and fix possible bugs or memory leaks with these requirements:
 
 - You need to change the whole project to an extensible project. 
 - Choose an architecture you have experience with, such as MVP, MVVM, or MVI.
