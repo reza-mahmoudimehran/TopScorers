@@ -8,5 +8,5 @@ import retrofit2.http.GET
 interface TopScorersApi {
     @Mock("data.json")
     @GET("list")
-    suspend fun getData(): Response<List<FakeData>>
+    suspend fun getTopScorersList(): Response<List<FakeData>>
 }
