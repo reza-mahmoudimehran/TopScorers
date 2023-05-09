@@ -47,30 +47,8 @@ class GetTopScorersListUseCaseTest {
     @Test
     fun `when repository returns successful response, it should return success result`() {
         runTest {
-            // Given
-            val fakeData = listOf(
-                FakeData(
-                    league = League("Premier League", "England", 1, 38),
-                    players = listOf(
-                        Player("Mohamed Salah", Team("Liverpool", 1), 32),
-                        Player("Harry Kane", Team("Tottenham", 2), 23),
-                    )
-                )
-            )
-            // Given
-            val fakeListItems = listOf(
-                TopScorersListItem.LeagueData(League("Premier League", "England", 1, 38)),
-                TopScorersListItem.PlayerData(
-                    Player("Mohamed Salah", Team("Liverpool", 1), 32),
-                    1
-                ),
-                TopScorersListItem.PlayerData(
-                    Player("Harry Kane", Team("Tottenham", 2), 23),
-                    2
-                ),
-            )
 
-            val response = Response.success(fakeData)
+            val response = Response.success(unsortedList)
             `when`(mockTopScorersRepository.getTopScorersList()).thenReturn(response)
 
             // Act
@@ -78,7 +56,7 @@ class GetTopScorersListUseCaseTest {
 
             // Assert
             assertTrue(result is ApiResult.Success)
-            assertThat(fakeListItems).isEqualTo(result.data)
+            assertThat(expectedSortedByNoneList).isEqualTo(result.data)
         }
     }
 }
