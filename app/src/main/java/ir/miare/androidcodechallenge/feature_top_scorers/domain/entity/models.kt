@@ -26,3 +26,10 @@ data class Team(
     @JsonProperty("name") val name: String,
     @JsonProperty("rank") val rank: Int
 ) : Serializable
+
+
+
+sealed class TopScorersListItem {
+    data class LeagueData(val league: League) : TopScorersListItem()
+    data class PlayerData(val player: Player) : TopScorersListItem()
+}

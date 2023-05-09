@@ -23,7 +23,7 @@ class TopScorersListViewModel @Inject constructor(
 
     fun getTopScorersList(){
         viewModelScope.launch {
-            _topScorersList.value = getTopScorersListUseCase(Unit)
+//            _topScorersList.value = getTopScorersListUseCase(Unit)
         }
     }
 }
