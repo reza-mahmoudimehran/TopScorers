@@ -51,14 +51,18 @@ class TopScorersAdapter :
         return if (getItem(position) is TopScorersListItem.LeagueData) VIEW_TYPE_LEAGUE else VIEW_TYPE_PLAYER
     }
 
-    class LeagueViewHolder(private val binding: ItemLeagueBinding) :
+    fun submitList(list: List<TopScorersListItem>?, onSubmitListFinished: () -> Unit) {
+        super.submitList(list, Runnable(onSubmitListFinished))
+    }
+
+    inner class LeagueViewHolder(private val binding: ItemLeagueBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(leagueData: TopScorersListItem.LeagueData) {
             binding.leagueData = leagueData
         }
     }
 
-    class PlayerViewHolder(private val binding: ItemPlayerBinding) :
+    inner class PlayerViewHolder(private val binding: ItemPlayerBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(playerData: TopScorersListItem.PlayerData) {
             binding.playerData = playerData

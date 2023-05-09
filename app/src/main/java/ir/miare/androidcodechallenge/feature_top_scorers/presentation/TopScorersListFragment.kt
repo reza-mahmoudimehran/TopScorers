@@ -84,10 +84,11 @@ class TopScorersListFragment : Fragment() {
                 binding.rcvLeague.gone()
             }
             is ApiResult.Success ->{
-                binding.pgbLoading.gone()
-                binding.txtErrorMessage.gone()
-                binding.rcvLeague.visible()
-                topScorersAdapter.submitList(result.data)
+                topScorersAdapter.submitList(result.data){
+                    binding.pgbLoading.gone()
+                    binding.txtErrorMessage.gone()
+                    binding.rcvLeague.visible()
+                }
             }
             is ApiResult.Error ->{
                 binding.pgbLoading.gone()
