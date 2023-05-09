@@ -21,7 +21,12 @@ class GetTopScorersListUseCase @Inject constructor(
                         val result = it.body()!!
                         result.forEach { item ->
                             list.add(TopScorersListItem.LeagueData(item.league))
-                            list.addAll(item.players.map { player -> TopScorersListItem.PlayerData(player) })
+                            list.addAll(item.players.mapIndexed { index, player ->
+                                TopScorersListItem.PlayerData(
+                                    player,
+                                    index + 1
+                                )
+                            })
                         }
                         ApiResult.Success(list)
                     } else {

@@ -31,5 +31,5 @@ data class Team(
 
 sealed class TopScorersListItem {
     data class LeagueData(val league: League) : TopScorersListItem()
-    data class PlayerData(val player: Player) : TopScorersListItem()
+    data class PlayerData(val player: Player, val rank: Int) : TopScorersListItem()
 }

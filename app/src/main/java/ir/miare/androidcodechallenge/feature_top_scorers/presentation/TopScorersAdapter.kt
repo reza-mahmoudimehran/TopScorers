@@ -54,14 +54,14 @@ class TopScorersAdapter :
     class LeagueViewHolder(private val binding: ItemLeagueBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(leagueData: TopScorersListItem.LeagueData) {
-
+            binding.leagueData = leagueData
         }
     }
 
     class PlayerViewHolder(private val binding: ItemPlayerBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(playerData: TopScorersListItem.PlayerData) {
-
+            binding.playerData = playerData
         }
     }
 }
