@@ -82,4 +82,14 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
+
+
+
+    // Testing Coroutines
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
+
+    // Mocking objects
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testImplementation "com.google.truth:truth:1.1.3"
 }

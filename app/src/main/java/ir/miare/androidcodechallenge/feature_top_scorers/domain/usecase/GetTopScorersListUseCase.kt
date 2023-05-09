@@ -1,7 +1,6 @@
 package ir.miare.androidcodechallenge.feature_top_scorers.domain.usecase
 
 import ir.miare.androidcodechallenge.core.di.qualifiers.IoDispatcher
-import ir.miare.androidcodechallenge.core.domain.common.usecase.ApiUseCase
 import ir.miare.androidcodechallenge.core.util.network.ApiResult
 import ir.miare.androidcodechallenge.feature_top_scorers.domain.TopScorersRepository
 import ir.miare.androidcodechallenge.feature_top_scorers.domain.entity.FakeData
@@ -9,7 +8,6 @@ import ir.miare.androidcodechallenge.feature_top_scorers.domain.entity.SortingTy
 import ir.miare.androidcodechallenge.feature_top_scorers.domain.entity.TopScorersListItem
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
-import retrofit2.Response
 import javax.inject.Inject
 
 class GetTopScorersListUseCase @Inject constructor(
@@ -21,7 +19,7 @@ class GetTopScorersListUseCase @Inject constructor(
             withContext(ioDispatcher) {
                 topScorersRepository.getTopScorersList().let {
                     if (it.isSuccessful) {
-                        ApiResult.Success(sortedList(sortingType, it.body()!!))
+                        ApiResult.Success(sortList(sortingType, it.body()!!))
                     } else {
                         ApiResult.Error(Exception("Network Error"))
                     }
@@ -32,7 +30,7 @@ class GetTopScorersListUseCase @Inject constructor(
         }
     }
 
-    private fun sortedList(
+    private fun sortList(
         sortingType: SortingType,
         unsortedList: List<FakeData>
     ): List<TopScorersListItem> {
