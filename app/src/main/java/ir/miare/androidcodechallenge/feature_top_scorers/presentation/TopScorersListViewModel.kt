@@ -24,6 +24,7 @@ class TopScorersListViewModel @Inject constructor(
 
 
     fun getTopScorersList(sortingType: SortingType){
+        _topScorersList.value = ApiResult.Loading
         viewModelScope.launch {
             _topScorersList.value = getTopScorersListUseCase(sortingType)
         }

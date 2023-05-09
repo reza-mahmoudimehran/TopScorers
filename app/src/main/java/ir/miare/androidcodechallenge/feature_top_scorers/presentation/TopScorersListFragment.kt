@@ -11,8 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import ir.miare.androidcodechallenge.R
 import ir.miare.androidcodechallenge.core.util.network.ApiResult
+import ir.miare.androidcodechallenge.core.util.view.gone
+import ir.miare.androidcodechallenge.core.util.view.visible
 import ir.miare.androidcodechallenge.databinding.FragmentTopScorersListBinding
 import ir.miare.androidcodechallenge.feature_top_scorers.domain.entity.SortingType
+import ir.miare.androidcodechallenge.feature_top_scorers.domain.entity.TopScorersListItem
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -67,14 +70,32 @@ class TopScorersListFragment : Fragment() {
         lifecycleScope.launch {
             launch {
                 viewModel.topScorersList.collectLatest {
-                    when(it){
-                        is ApiResult.Success ->{
-                            topScorersAdapter.submitList(it.data)
-                        }
-                        else -> {}
-                    }
+                    handleApiResult(it)
                 }
             }
+        }
+    }
+
+    private fun handleApiResult(result: ApiResult<List<TopScorersListItem>>){
+        when(result){
+            is ApiResult.Loading ->{
+                binding.pgbLoading.visible()
+                binding.txtErrorMessage.gone()
+                binding.rcvLeague.gone()
+            }
+            is ApiResult.Success ->{
+                binding.pgbLoading.gone()
+                binding.txtErrorMessage.gone()
+                binding.rcvLeague.visible()
+                topScorersAdapter.submitList(result.data)
+            }
+            is ApiResult.Error ->{
+                binding.pgbLoading.gone()
+                binding.txtErrorMessage.visible()
+                binding.rcvLeague.gone()
+                binding.txtErrorMessage.text = result.exception.message
+            }
+            else -> {}
         }
     }
 }
