@@ -21,7 +21,7 @@
             android:layout_margin="16dp"
             android:textSize="16sp"
             android:textColor="#000"
-            app:setIntToTextView="@{playerData.rank}"
+            app:intToText="@{playerData.rank}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />

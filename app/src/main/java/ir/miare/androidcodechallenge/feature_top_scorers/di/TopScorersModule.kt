@@ -1,5 +1,6 @@
 package ir.miare.androidcodechallenge.feature_top_scorers.di
 
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,15 +13,15 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object TopScorersModule {
+abstract class TopScorersModule {
+    companion object {
+        @Singleton
+        @Provides
+        fun provideTopScorersApi(retrofit: Retrofit): TopScorersApi =
+            retrofit.create(TopScorersApi::class.java)
 
+    }
     @Singleton
-    @Provides
-    fun providesTopScorersRepository(topScorersApi: TopScorersApi): TopScorersRepository =
-        TopScorersRepositoryImpl(topScorersApi)
-
-    @Singleton
-    @Provides
-    fun provideTopScorersApi(retrofit: Retrofit): TopScorersApi =
-        retrofit.create(TopScorersApi::class.java)
+    @Binds
+    abstract fun bindsTopScorersRepository(topScorersRepositoryImpl: TopScorersRepositoryImpl): TopScorersRepository
 }

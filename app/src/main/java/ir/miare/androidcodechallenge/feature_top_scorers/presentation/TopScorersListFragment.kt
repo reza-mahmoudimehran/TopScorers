@@ -1,20 +1,18 @@
 package ir.miare.androidcodechallenge.feature_top_scorers.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import ir.miare.androidcodechallenge.R
 import ir.miare.androidcodechallenge.core.util.network.ApiResult
-import ir.miare.androidcodechallenge.core.util.network.data
 import ir.miare.androidcodechallenge.databinding.FragmentTopScorersListBinding
+import ir.miare.androidcodechallenge.feature_top_scorers.domain.entity.SortingType
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -33,7 +31,7 @@ class TopScorersListFragment : Fragment() {
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.getTopScorersList()
+        viewModel.getTopScorersList(SortingType.NONE)
         setupViews()
         collectData()
     }
@@ -46,6 +44,23 @@ class TopScorersListFragment : Fragment() {
                 LinearLayoutManager.VERTICAL, false
             )
             adapter = topScorersAdapter
+        }
+
+        binding.rdgSoring.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.rdb_sort_by_ranking -> {
+                    viewModel.getTopScorersList(SortingType.RANKING)
+                }
+                R.id.rdb_sort_by_average -> {
+                    viewModel.getTopScorersList(SortingType.AVERAGE)
+                }
+                R.id.rdb_sort_by_most_goal -> {
+                    viewModel.getTopScorersList(SortingType.MOST_GOAL)
+                }
+                R.id.rdb_sort_by_none -> {
+                    viewModel.getTopScorersList(SortingType.NONE)
+                }
+            }
         }
     }
     private fun collectData() {

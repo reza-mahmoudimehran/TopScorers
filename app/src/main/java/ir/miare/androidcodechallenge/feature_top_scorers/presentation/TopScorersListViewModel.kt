@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.miare.androidcodechallenge.core.util.network.ApiResult
 import ir.miare.androidcodechallenge.feature_top_scorers.domain.entity.FakeData
+import ir.miare.androidcodechallenge.feature_top_scorers.domain.entity.SortingType
 import ir.miare.androidcodechallenge.feature_top_scorers.domain.entity.TopScorersListItem
 import ir.miare.androidcodechallenge.feature_top_scorers.domain.usecase.GetTopScorersListUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,9 +23,9 @@ class TopScorersListViewModel @Inject constructor(
         get() = _topScorersList
 
 
-    fun getTopScorersList(){
+    fun getTopScorersList(sortingType: SortingType){
         viewModelScope.launch {
-            _topScorersList.value = getTopScorersListUseCase()
+            _topScorersList.value = getTopScorersListUseCase(sortingType)
         }
     }
 }

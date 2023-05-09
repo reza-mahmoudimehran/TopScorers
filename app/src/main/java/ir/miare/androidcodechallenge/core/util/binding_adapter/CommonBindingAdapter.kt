@@ -5,7 +5,7 @@ import androidx.databinding.BindingAdapter
 
 class CommonBindingAdapter {
     companion object {
-        @BindingAdapter("setIntToTextView")
+        @BindingAdapter("intToText")
         @JvmStatic
         fun setIntToTextView(textView: TextView, text: Int) {
             textView.text = text.toString()
