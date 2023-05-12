@@ -1,45 +1,43 @@
-# Android Live Coding Interview
-######  We have an interview, yay
+# Top Scorers Android Project
 
-### TL;DR
+This Android project template is built using the following technologies:
 
-Clone this project, open it in Android Studio and build it.
+- MVVM (Model-View-ViewModel) architectural pattern
+- Clean Architecture
+- Hilt for dependency injection
+- Coroutines for asynchronous programming
+- MockFit for mock server responses
+- Retrofit for networking
+- Jackson for JSON parsing
+- Espresso for UI testing
+- Mockito for mocking dependencies
+- Truth for assertions
+- Data Binding for UI binding
 
-#### What is this?
+## Project Structure
 
-This app shows a list of the top three scoring football players in different leagues.
+The project follows the Clean Architecture principles, organizing code into layers:
 
-#### What do I do with this?
+- **app**: Contains the main Android application module.
+- **data**: Implements the data layer, including repositories, data sources, and models.
+- **domain**: Defines the business logic layer, including use cases and domain models.
+- **presentation**: Implements the presentation layer, including ViewModels, UI components, and data binding.
 
-- Clone it
-- Open it in Android Studio
-- Let it download its dependencies
-- Make the project once (since we have some intermediate classes which need to be generated)
-- Chill :)
+## Dependency Injection
 
-#### Requirements
+Hilt is used for dependency injection, providing a simple and efficient way to manage dependencies throughout the application. The use of Hilt ensures a modular and testable codebase.
 
-You should refactor the project properly and fix possible bugs or memory leaks with these requirements:
+## Asynchronous Programming
 
-- You need to change the whole project to an extensible project. 
-- Choose an architecture you have experience with, such as MVP, MVVM, or MVI.
-- Use Hilt as dependency injection in the project.
-- Implement the desired logics in the radio buttons section.
-- UI performance in a large list must be acceptable.
-- Write couple of tests for the view's logic.
+Coroutines are utilized for handling asynchronous operations in a concise and efficient manner. Coroutines simplify the code by providing structured concurrency and allowing developers to write asynchronous code in a sequential style.
 
+## Network Communication
 
-#### What's the interview like?
+Retrofit is employed for handling network communication, providing a robust and flexible framework for making API requests. Jackson is used for JSON parsing, ensuring efficient and reliable serialization and deserialization of data, and MockFit is used to mock server responses.
 
-We've tried to make the interview similar to our day-to-day work environment as much as it's
-possible. It means that:
+## Mocking and Testing
+Espresso is utilized for UI testing, Mockito for mocking dependencies, and Truth for expressive assertions.
 
-- You would have access to Internet, stackoverflow, official documentations, your other code
-  bases, ...
-- There's no penalty for searching the internet or copy pasting code from other sources. There's
-  only a penalty for not succeeding to solve the problem.
-- We have not memorized all of the Android's APIs, we do not value memorizing them, and we don't
-  expect you to have them memorized. We're developers too.
-- Since the interview might take two hours or three, please feel free to have a break during it and
-  pour yourself a cup of coffee, play a music in the background or anything else that you would
-  do during actual work days. It's just a normal coding session, not a big deal.
+## Data Binding
+
+Data Binding is integrated to bind UI components directly to data sources, reducing boilerplate code and enhancing the separation of concerns between the UI and the underlying data.
